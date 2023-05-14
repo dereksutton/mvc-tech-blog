@@ -5,3 +5,17 @@
     <p>By {{User.username}} on {{format_date date_created}}</p>
     <div>{{body}}</div>
 </article>
+
+<!-- Comment Form -->
+{{> commentForm post_id=id}}
+
+<!-- Display comments -->
+<section>
+    <h3>Comments:</h3>
+    {{#each comments}}
+        <div class="comment">
+            <p>{{this.body}}</p>
+            <p>By {{this.User.username}} on {{format_date this.date_created}}</p>
+        </div>
+    {{/each}}
+</section>

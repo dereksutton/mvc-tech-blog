@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
             posts,
             logged_in: req.session.logged_in
         });
-        res.status(200).json(postData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -30,7 +29,16 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
-            include: [{ model: User }],
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    include: [ User ],
+                },
+            ],
         });
 
         if (!postData) {
