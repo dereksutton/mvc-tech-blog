@@ -1,29 +1,32 @@
-const Sequelize = require('sequelize');
-const config = require('../config/config.js');
-const env = process.env.NODE_ENV || 'development';
+const User = require('./User');
+const Post = require('./Post');
+const Comment = require('./Comment');
 
-const sequelize = config[env].use_env_variable
-    ? new Sequelize(process.env[config[env].use_env_variable], config[env])
-    : new Sequelize(config[env].database, config[env].username, config[env].password, config[env]);
+User.hasMany(Post, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
 
-const db = {};
+Post.belongsTo(User, {
+    foreignKey: 'user_id',
+});
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+User.hasMany(Comment, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
 
-// Import models
-db.User = require('./User.js')(sequelize, Sequelize);
-db.Post = require('./Post.js')(sequelize, Sequelize);
-db.Comment = require('./Comment.js')(sequelize, Sequelize);
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+});
 
-// Set up model relationships
-db.User.hasMany(db.Post);
-db.Post.belongsTo(db.User);
+Post.hasMany(Comment, {
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
+});
 
-db.User.hasMany(db.Comment);
-db.Comment.belongsTo(db.User);
+Comment.belongsTo(Post, {
+    foreignKey: 'post_id',
+});
 
-db.Post.hasMany(db.Comment);
-db.Comment.belongsTo(db.Post);
-
-module.exports = db;
+module.exports = { User, Post, Comment };
