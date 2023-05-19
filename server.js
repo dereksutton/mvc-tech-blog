@@ -1,9 +1,10 @@
 const express = require('express');
+const path = require('path');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const userRoutes =  require('.controllers/userRoutes');
+const userRoutes =  require('./controllers/userRoutes');
 const postRoutes = require('./controllers/postRoutes');
 const commentRoutes = require('./controllers/commentRoutes');
 
@@ -24,17 +25,24 @@ const sesh = {
 app.use(session(sesh));
 
 // Inform Express.js which template engine to use
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+const hbs = exphbs.create({ defaultLayout: 'main' });
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+    res.render('register');
+});
+
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+    app.listen(PORT, () => {
+        console.log(`Server listening on: http://localhost:${PORT}`)
+    });
 });
