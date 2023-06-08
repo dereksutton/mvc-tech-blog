@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.render('register');
 });
 
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
 
