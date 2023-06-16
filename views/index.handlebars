@@ -1,10 +1,9 @@
 <div class="container">
-    {{#each posts}}
-        <div class="post">
-            <h2><a href="/post/{{id}}">{{title}}</a></h2>
-            <p>{{body}}</p>
-            <p>Posted by: {{User.username}}</p>
-            <p>On: {{createdAt}}</p>
-        </div>
-    {{/each}}
+   <h1>Welcome to the Tech Blog</h1>
+
+{{#each posts}}
+  <h2>{{this.title}}</h2>
+  <p>Posted by: {{this.User.username}}</p>
+  <p>{{this.content}}</p>
+{{/each}}
 </div>
