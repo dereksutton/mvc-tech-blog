@@ -1,9 +1,24 @@
 <div class="container">
-   <h1>Welcome to the Tech Blog</h1>
+   <h1>Welcome to Tech Blog Central</h1>
 
-{{#each posts}}
-  <h2>{{this.title}}</h2>
-  <p>Posted by: {{this.User.username}}</p>
-  <p>{{this.content}}</p>
+{{#each posts as |post|}}
+    <div class="post-card">
+        <div class="post-container">
+            <a href="/post/{{post.id}}">
+            <div class="post-header">
+                <h1>{{post.title}}</h1>
+            </div>
+            <div class="post-creator">
+                <p class="creator-name">{{user.username}}</p>
+            </div>
+            <div class="post-content">
+                <p>{{post.content}}
+            </div>
+            <div>
+                <p class="post-date">{{format_date post.createdAt}}</p>
+            </div>
+            </a>
+        </div>
+    </div>
 {{/each}}
 </div>
