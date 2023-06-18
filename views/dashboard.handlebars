@@ -1,12 +1,52 @@
-<div class="container">
-    <h1>Dashboard</h1>
-    <button id="new-post-button">Add New Post</button>
-    {{#each posts}}
-        <div class="post">
-            <h2><a href="/post/{{id}}">{{title}}</a></h2>
-            <p>{{body}}</p>
-            <button class="edit-button" data-id="{{id}}">Edit</button>
-            <button class="delete-button" data-id="{{id}}">Delete</button>
-        </div>
-    {{/each}}
+<div class="container-dash">
+    <div class="dash-username">
+        <h1>{{username}}</h1>
+    </div>
+    <div class="dash-p">
+        <p>Your current list of posts. Create, update, or delete a post.</p>
+    </div>
 </div>
+<div>
+    <form class="login-form">
+        <div class="form-group">
+            <label class="field-custom">Post Title</label>
+            <input type="text" id="post-content">
+        </div>
+        <button class="btn btn-secondary post-btn">Post</button>
+    </form>
+</div>
+
+{{#each posts as |post|}}
+<div>
+    <div class="post-card">
+        <div class="post-container">
+            <div class="post-header">
+                <h1>{{post.title}}</h1>
+            </div>
+            <div class="post-content">
+                <p>{{post.content}}</p>
+            </div>
+            <div>
+                <p class="post-date">{{format_date createdAt}}</p>
+            </div>
+            <button class="btn btn-secondary update-btn" type="submit" data-id="{{post.id}}">Update</button>
+            <button class="btn btn-secondary delete-btn" type="submit" data-id="{{post.id}}">Delete</button>
+            <div>
+                <form id="form-update{{post.id}}">
+                    <div class="form-group">
+                        <label class="field-custom">Title</label>
+                        <input type="text" id="post-title{{post.id}}"></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-custom">Post Content</label>
+                        <input type="text" id="post-content{{post.id}}">
+                    </div>
+                    <button type="submit" data-id="{{post.id}}" id="commit-btn" class="btn btn-secondary">Commit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<script src="/js/dashboard.js"></script>
