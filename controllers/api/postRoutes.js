@@ -9,7 +9,10 @@ router.get('/', async (req, res) => {
             include: [ User, Comment ]
         });
 
-        res.status(200).json(postData);
+        const posts = postData.map(post => post.get({ plain: true }));
+
+        res.render('posts', { posts, logged_in: req.session.logged_in });
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -17,6 +20,7 @@ router.get('/', async (req, res) => {
 
 // Get post by ID
 router.get('/:id', async (req, res) => {
+    console.log(req.session.user_id)
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -34,13 +38,21 @@ router.get('/:id', async (req, res) => {
         });
 
         if (!postData) {
-            res.status(500).json({ message: 'No post found with that ID.' });
+            res.status(404).send({ message: 'No post found with that ID.' });
             return;
         }
-        res.status(200).json(postData);
+
+        const post = postData.get({ plain: true });
+
+        res.render('post', {
+            post, 
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id,
+        });
+
     } catch (err) {
         console.log('Error encountered.');
-        res.status(400).json(err);
+        res.status(500).send(err);
     }
 });
 

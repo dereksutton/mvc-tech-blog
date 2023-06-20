@@ -1,4 +1,4 @@
-<div class="container-dash">
+<div class="container-dash d-flex flex-column justify-content-center align-items-center text-center" style="margin-top: 5vh;">
     <div class="dash-username">
         <h1>{{username}}</h1>
     </div>
@@ -6,10 +6,14 @@
         <p>Your current list of posts. Create, update, or delete a post.</p>
     </div>
 </div>
-<div>
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="margin-top: 20px;">
     <form class="login-form">
-        <div class="form-group">
+        <div class="form-group d-flex flex-column align-items-center">
             <label class="field-custom">Post Title</label>
+            <input type="text" id="post-title">
+        </div>
+        <div class="form-group d-flex flex-column align-items-center">
+            <label class="field-custom">Post Content</label>
             <input type="text" id="post-content">
         </div>
         <button class="btn btn-secondary post-btn">Post</button>
@@ -32,13 +36,13 @@
             <button class="btn btn-secondary update-btn" type="submit" data-id="{{post.id}}">Update</button>
             <button class="btn btn-secondary delete-btn" type="submit" data-id="{{post.id}}">Delete</button>
             <div>
-                <form id="form-update{{post.id}}">
+                <form id="form-update{{post.id}}" class="hidden">
                     <div class="form-group">
-                        <label class="field-custom">Title</label>
+                        <label class="field-custom">Update Title</label>
                         <input type="text" id="post-title{{post.id}}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="field-custom">Post Content</label>
+                        <label class="field-custom">Update Text</label>
                         <input type="text" id="post-content{{post.id}}">
                     </div>
                     <button type="submit" data-id="{{post.id}}" id="commit-btn" class="btn btn-secondary">Commit</button>
@@ -49,4 +53,9 @@
 </div>
 {{/each}}
 
+
+<script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script>
 <script src="/js/dashboard.js"></script>

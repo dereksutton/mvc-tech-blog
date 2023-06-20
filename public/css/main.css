@@ -1,0 +1,64 @@
+body {
+    position: relative !important;
+    min-height: 100vh !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+    text-align: center;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+    text-align: center;
+}
+
+.login-title {
+    margin-bottom: 25px;
+}
+
+.register-title {
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.field-custom {
+    margin-bottom: 5px;
+}
+
+.post-card {
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #67f6cb, #fa6bd6);
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-10px);
+}
+
+.post-btn {
+    margin-bottom: 50px;
+}
+
+.update-btn {
+    margin-bottom: 20px;
+}
+
+.delete-btn {
+    margin-bottom: 20px;
+}

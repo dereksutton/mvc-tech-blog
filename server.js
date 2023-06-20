@@ -10,6 +10,11 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
 // Set up sessions with cookies
 const sesh = {
     secret: process.env.SESH_SECRET,

@@ -1,5 +1,5 @@
 <div>
-    <div class="post-card">
+    <div class="post-card d-flex flex-column justify-content-center align-items-center text-center">
         <div class="post-container">
             <div class="post-header">
                 <h1>{{title}}</h1>
@@ -17,30 +17,39 @@
     </div>
 </div>
 
-<div class="comment-header">
-    <p>{{comments.length}} comments in this post.</p>
+<div class="container">
+    <div class="comment-header">
+        <p>{{comments.length}} comments in this post.</p>
+    </div>
+    {{#each comments as |comment|}}
+    <div class="card-comment">
+        <h1 class="head-comment">{{comment.user.username}}</h1>
+        <p class="text-comment">{{comment.comment}}</p>
+        <p class="date-comment">{{format_date comment.createdAt}}</p>
+        <p>Logged in: {{logged_in}}</p>
+        <p>User ID: {{user_id}}</p>
+        <p>{{comment.user.id}}</p>
+            <!-- Only show the delete button if the comment was posted by the logged-in user -->
+                <button class="delete-comment-btn" data-id="{{comment.id}}">Delete</button>
+    </div>
+    {{/each}}
 </div>
-{{#each comments as |comment|}}
-<div class="card-comment">
-    <h1 class="head-comment">{{comment.user.username}}</h1>
-    <p class="text-comment">{{comment.comment}}</p>
-    <p class="date-comment">{{format_date comment.createdAt}}</p>
-</div>
-{{/each}}
 
-{{#if logged_in}}
-<div class="comment-header">
-    <h1>Add Comment</h1>
+<div class="container">
+    {{#if logged_in}}
+    <div class="comment-header">
+        <h1>Add Comment</h1>
+    </div>
+    <div>
+        <form id="form-comment{{id}}" class="comment-add" data-id="{{id}}">
+            <div class="form-group">
+                <label class="field-custom">Comment</label>
+                <input type="text" id="post-comment{{id}}" class="w-100">
+            </div>
+            <button type="submit" id="comment-btn{{id}}" class="btn btn-secondary comment-btn mb-5">Post</button>
+        </form>
+    </div>
+    {{/if}}
 </div>
-<div>
-    <form action="" id="form-comment{{post.id}}" class="form-login">
-        <div class="form-group">
-            <label class="field-custom">Comment</label>
-            <input type="text" id="post-comment{{id}}" data-type="{{post.id}}">
-        </div>
-        <button type="submit" data-id="{{id}}" id="comment-btn" class="btn btn-secondary">Post</button>
-    </form>
-</div>
-{{/if}}
 
 <script src="/js/post.js"></script>

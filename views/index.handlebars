@@ -1,10 +1,11 @@
-<div class="container">
-   <h1>Welcome to Tech Blog Central</h1>
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="padding: 10vh;">
+   <h1 class="text-center">Welcome to Tech Blog Central</h1>
+   <p class="text-center">Select a post to comment.</p>
 
 {{#each posts as |post|}}
-    <div class="post-card">
+    <div class="post-card d-flex flex-column justify-content-center align-items-center text-center">
         <div class="post-container">
-            <a href="/post/{{post.id}}">
+            <a href="/post/{{post.id}}" class="text-decoration-none text-dark">
             <div class="post-header">
                 <h1>{{post.title}}</h1>
             </div>

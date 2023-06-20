@@ -7,4 +7,12 @@ module.exports = {
         // Format large numbers to include commas
         return parseInt(amount).toLocaleString();
     },
+    if_eq(a, b, options) {
+        // Compare two values and render the block if they are equal
+        if (a == b) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    },
 };

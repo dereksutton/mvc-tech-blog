@@ -14,10 +14,9 @@ const registrationHandler = async (event) => {
         if (res.ok) {
             document.location.replace('/dashboard');
         } else {
-            console.log('Error encountered.');
+            console.log('Registration error encountered.');
         }
     }
 };
 
-document.querySelector('.register-btn');
-document.addEventListener('click', registrationHandler);
+document.querySelector('.register-btn').addEventListener('click', registrationHandler);
