@@ -1,3 +1,5 @@
+const Handlebars = require('handlebars');
+
 module.exports = {
     format_date(date) {
         // Format the date as MM/DD/YYYY
@@ -15,4 +17,9 @@ module.exports = {
             return options.inverse(this);
         }
     },
+    n12br(text) {
+        text = Handlebars.Utils.escapeExpression(text);
+        text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+        return new Handlebars.SafeString(text);
+    }
 };

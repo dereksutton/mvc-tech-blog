@@ -1,6 +1,6 @@
 <div class="d-flex flex-column justify-content-center align-items-center text-center" style="padding: 10vh;">
    <h1 class="text-center">Welcome to Tech Blog Central</h1>
-   <p class="text-center">Select a post to comment.</p>
+   <p class="text-center bold-text">Select a post to comment.</p>
 
 {{#each posts as |post|}}
     <div class="post-card d-flex flex-column justify-content-center align-items-center text-center">
@@ -13,7 +13,7 @@
                 <p class="creator-name">{{user.username}}</p>
             </div>
             <div class="post-content">
-                <p>{{post.content}}
+                <p>{{n12br post.content}}
             </div>
             <div>
                 <p class="post-date">{{format_date post.createdAt}}</p>

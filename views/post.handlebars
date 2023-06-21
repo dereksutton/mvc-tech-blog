@@ -8,7 +8,7 @@
                 <p class="creator-name">{{user.username}}</p>
             </div>
             <div class="post-content">
-                <p>{{content}}</p>
+                <p>{{n12br content}}</p>
             </div>
             <div>
                 <p class="post-date">{{format_date createdAt}}</p>
@@ -26,11 +26,6 @@
         <h1 class="head-comment">{{comment.user.username}}</h1>
         <p class="text-comment">{{comment.comment}}</p>
         <p class="date-comment">{{format_date comment.createdAt}}</p>
-        <p>Logged in: {{logged_in}}</p>
-        <p>User ID: {{user_id}}</p>
-        <p>{{comment.user.id}}</p>
-            <!-- Only show the delete button if the comment was posted by the logged-in user -->
-                <button class="delete-comment-btn" data-id="{{comment.id}}">Delete</button>
     </div>
     {{/each}}
 </div>

@@ -7,6 +7,14 @@ body {
     display: none;
 }
 
+.custom-nav {
+    background: linear-gradient(to right, #67f6cb, #fa6bd6) !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .register-container {
     display: flex;
     justify-content: center;
@@ -25,6 +33,10 @@ body {
     margin-bottom: 25px;
 }
 
+.bold-text {
+    font-weight: 600;
+}
+
 .register-title {
     margin-bottom: 25px;
 }
@@ -37,14 +49,22 @@ body {
     margin-bottom: 5px;
 }
 
+.custom-input-field {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+}
+
 .post-card {
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 20px;
+    width: 90vw;
+    margin: 1rem auto;
     padding: 20px;
     border-radius: 10px;
     background: linear-gradient(to right, #67f6cb, #fa6bd6);
     transition: transform 0.3s ease;
+
 }
 
 .post-card:hover {
@@ -61,4 +81,16 @@ body {
 
 .delete-btn {
     margin-bottom: 20px;
+}
+
+.card-comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    padding-top: 150px;
 }
