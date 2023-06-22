@@ -24,6 +24,8 @@ This application is a CMS-style Tech Blog, where developers can publish their bl
 
 ## Usage
 
+[Deployed URL](https://shielded-earth-13580-f3500b139b12.herokuapp.com/)
+
 Visit the deployed site and create a user account. Once logged in, you can view existing posts, add your own posts, comment on existing posts, and delete your own posts.
 
 ## Features
