@@ -10,11 +10,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use((req, res, next) => {
-    console.log(`Incoming request: ${req.method} ${req.url}`);
-    next();
-});
-
 // Set up sessions with cookies
 const sesh = {
     secret: process.env.SESH_SECRET,
@@ -24,6 +19,11 @@ const sesh = {
     store: new SequelizeStore({
         db: sequelize,
     }),
+};
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1);
+    sesh.cookie.secure = true;
 };
 
 const hbs = exphbs.create({ helpers });
