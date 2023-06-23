@@ -1,6 +1,13 @@
 <div class="d-flex flex-column justify-content-center align-items-center text-center" style="padding: 10vh;">
    <h1 class="text-center">Welcome to Tech Blog Central</h1>
+   
+   {{#unless logged_in}}
+   <p class="text-center bold-text">Register or login to begin.</p>
+   {{/unless}}
+
+   {{#if logged_in}}
    <p class="text-center bold-text">Select a post to comment.</p>
+   {{/if}}
 
 {{#each posts as |post|}}
     <div class="post-card d-flex flex-column justify-content-center align-items-center text-center">
