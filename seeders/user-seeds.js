@@ -19,6 +19,11 @@ const userData = [
     },
 ];
 
-const seedUsers = () => User.bulkCreate(userData, {individualHooks: true});
-
-module.exports = seedUsers;
+module.exports = {
+    up: async (queryInterface, Sequelize) => {
+        await User.bulkCreate(userData, {individualHooks: true});
+    },
+    down: async (queryInterface, Sequelize) => {
+        await queryInterface.bulkDelete('Users', null, {});
+    }
+};

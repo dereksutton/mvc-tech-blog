@@ -23,6 +23,11 @@ const commentsData = [
     }
 ];
 
-const seedComments = () => Comment.bulkCreate(commentsData);
-
-module.exports = seedComments;
+module.exports = {
+    up: async (queryInterface, Sequelize) => {
+        await Comment.bulkCreate(commentsData);
+    },
+    down: async (queryInterface, Sequelize) => {
+        await queryInterface.bulkDelete('Comments', null, {});
+    }
+};

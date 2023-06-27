@@ -28,6 +28,11 @@ const postData = [
     }
 ];
 
-const seedPosts = () => Post.bulkCreate(postData);
-
-module.exports = seedPosts;
+module.exports = {
+    up: async (queryInterface, Sequelize) => {
+        await Post.bulkCreate(postData);
+    },
+    down: async (queryInterface, Sequelize) => {
+        await queryInterface.bulkDelete('Posts', null, {});
+    }
+};
